@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HTML Microdata Example</title>
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <h1 itemprop="name">Producto: Zapatos de Running</h1>
+  <div itemscope itemtype="http://schema.org/Product">
+    <h2 itemprop="brand">Marca: Nike</h2>
+    <p itemprop="description">Descripción: Zapatos de running cómodos y duraderos para atletas.</p>
+    <p itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+      Precio: <span itemprop="priceCurrency" content="USD">$</span><span itemprop="price" content="99.99">99.99</span>
+    </p>
+  </div>
+  
+  <button onclick="getProductInfo()"><span class="button_top"> Obtener Información del Producto
+  </span></button>
+  <script src="main8.js"></script>
+</body>
+</html>
