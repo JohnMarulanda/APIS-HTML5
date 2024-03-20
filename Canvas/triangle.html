@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Triangle</title>
+</head>
+<body onload="draw()">
+    <canvas id="triangle_example">
+        An example of a triangle
+    </canvas>
+
+
+    <script>
+        function draw() {
+            const canvas = document.getElementById("triangle_example");
+            if (canvas.getContext) {
+                const ctx = canvas.getContext("2d");
+
+                // Triángulo relleno
+
+                //Creación del trazado, que se guarda como una lista de subtrazados
+                ctx.beginPath();
+
+                //Mueve la pluma a las coordenadas (x,y)
+                ctx.moveTo(25, 25);
+
+                //Dibuja líneas rectas, desde la posición actual de dibujo hasta la posición especificada.
+                ctx.lineTo(105, 25);
+                ctx.lineTo(25, 105);
+
+                //Al llamar fill cualquier forma abierta se cierra automaticamente.
+                ctx.fill();
+
+                // Triángulo contorneado
+                ctx.beginPath();
+                ctx.moveTo(125, 125);
+                ctx.lineTo(125, 45);
+                ctx.lineTo(45, 125);
+                ctx.closePath();
+                ctx.stroke();
+            }
+        }
+    </script>
+</body>
+</html>

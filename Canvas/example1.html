@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas basic example</title>
+
+    <style>
+        canvas {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body onload="draw()">
+
+    <!-- Texto descriptivo del contenido canvas o proveer una imagen estática del contenido a renderizar -->
+    <canvas id="basic_example" width="500" height="500">
+        Un cuadrado rojo relleno de ejemplo.
+    </canvas>
+
+
+    <script>
+        const draw = () => {
+            const basicCanvas = document.getElementById('basic_example');
+            //getContext() retorna un objeto con metódos para dibujar.
+            const ctx = basicCanvas.getContext("2d");
+
+            //Dibujar un cuadrado rojo relleno
+            ctx.fillStyle = 'red';
+
+            //Dibuja un rectángulo relleno, los dos primeros argumentos es para indicar las coordenadas y las otras dos el tamaño.
+            ctx.fillRect(25, 25, 100, 100);
+        }
+    </script>
+</body>
+</html>
