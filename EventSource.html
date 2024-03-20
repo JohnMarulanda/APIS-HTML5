@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Event Source</title>
+	<meta charset='utf-8'>
+</head>
+<body>
+	<h1>Event Source</h1>
+	<h4>Requiere estar en un servidor con PHP para que funcione</h4>
+	<h4>Abre la consola para ver las consultas de la hora que envía al servidor</h4>
+	<script>
+	if(window.EventSource){
+		var server_listener = new EventSource('25 EventSource.php');
+
+		server_listener.addEventListener('open',function(e){
+			console.log("La conexion se ha establecido");
+		},false);
+
+		server_listener.addEventListener('error',function(e){
+			if(e.readyState == EventSource.CLOSED){
+				console.log('El servidor ha cerrado la conexion');
+			}
+			//else console.log(e);
+		},false);
+
+		server_listener.addEventListener('message',function(e){
+			console.log(e.data);
+		},false);
+
+		server_listener.addEventListener('personalizado',function(e){  //evento personalizado
+			console.log(e.data);
+		},false);
+	}
+	</script>
+</body>
+</html>

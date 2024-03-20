@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Web workers con el Objeto Worker</title>
+	<meta charset='utf-8'>
+</head>
+<body>
+	<h1>Web workers con el Objeto Worker</h1>
+	<h4>los web workers no tienen acceso al DOM (no pueden escribir en consola, no puede crear HTML ni acceder a ellos). Solo le enviamos un mensaje y devuelve una respuesta</h4>
+	<h4>Un web worker permite que los trabajos se ejeuten en background sin paralizar la aplicación y permitiendo que mientras sea usada</h4>
+	<h2>Busca los números primos de 0 a :</h2>
+
+	<input type="number" id='numero' placeholder="2">
+	<button id='buscar'>Buscar primos</button>
+	<span id="resultado"></span>
+
+	<script>
+		window.addEventListener('load',init,false);
+		resultado = document.getElementById('resultado');
+
+		function init(){
+			document.getElementById('buscar').addEventListener('click',function(e){
+				var numero = document.getElementById('numero').value;
+				var worker = new Worker('webworker.js');
+				worker.addEventListener('message',function(e){  //se activa cuando hay respuesta del worker
+					//console.log(e.data);
+					resultado.innerHTML = resultado.innerHTML + "<br>" + "los primos hasta " + numero + " son " + e.data;  //e.data es el resultado devuelto por el webworker
+				},false);
+				worker.postMessage(numero); //metodo para enviarle datos al worker
+			},false);
+		}
+	</script>
+</body>
+</html>

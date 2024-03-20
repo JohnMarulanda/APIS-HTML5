@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>WebSockets</title>
+	<meta charset='utf-8'>
+</head>
+<body>
+	<h1>WebSockets</h1>
+	<!-- <h4>Para hacerlo funcionar en la consola hay que poner en la ruta del proyecto php "23 WebSockets.php"</h4> -->
+
+	<input type="text" id="mensaje">
+	<button id="enviar_mensaje" placeholder="escribe tu mensaje">Enviar</button>
+
+	<script>
+		var host  = "ws://localhost/APIS_HTML5/WebSockets.php";
+		var socket;
+
+		window.addEventListener('load', init, false);
+
+		function init(){
+			socket = new WebSocket(host);
+
+			socket.addEventListener('open',function(e){
+				console.log('Se inicio la comunicación con el servidor');
+				document.getElementById('enviar_mensaje').addEventListener('click', function(){
+				socket.send(document.getElementById('mensaje').value);
+				},false);
+			},false);
+
+			socket.addEventListener('message',function(msg){ console.log(msg.data);
+			},false);
+		}
+	</script>
+</body>
+</html>	
